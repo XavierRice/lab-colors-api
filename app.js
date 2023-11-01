@@ -6,7 +6,7 @@ const colorsController = require('./controllers/colorsController.js')
 
 //Middlewear
 app.use(cors()) //prevents cross orgin failures. 
-app.use(express.json()) //we accept json data. Changes the data which is in string form?
+app.use(express.json()) //we accept json data. Changes the data which is in json string form?
 app.use('/colors', colorsController)  // creating a route /colors 
 
 //ROUTES

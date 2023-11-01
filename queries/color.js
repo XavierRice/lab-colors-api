@@ -9,6 +9,30 @@ const getAllColors = async () => {
   }
 };
 
+const getOneColor = async (id) => {
+  try {
+    const selectedColor = await db.one("SELECT * FROM colors WHERE id=$1", id);
+    return selectedColor;
+  } catch (error) {
+    return error;
+  }
+};
+// INSERT INTO colors ( name, is_favorite ) VALUES ( $1, $2)
+const createColor = async ( color ) => {
+  try{
+      const newColor = await db.one(
+        "INSERT INTO colors (name, is_favorite) VALUES($1, $2) RETURNING *",
+        [color.name, color.is_favorite]
+      )
+      return newColor
+  } catch(error){
+    return error;
+  }
+}
+
+
 module.exports = {
   getAllColors,
+  getOneColor,
+  createColor
 };

@@ -1,7 +1,7 @@
 {
   "name": "pg-colors-api",
   "version": "1.0.0",
-  "description": "A lab by X.Rice for 10.1",
+  "description": "A in-class lab by X.Rice for 10.1",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
