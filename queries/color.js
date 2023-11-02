@@ -42,9 +42,22 @@ const deleteColor = async ( id ) => {
    }
 };
 
+const updateColor = async (id, color) => {
+  try{
+    const updatedColor = await db.one(
+      "UPDATE colors SET name=$1, is_favorite=$2 WHERE id=$3 RETURNING *",
+      [color.name, color.is_favorite, id]
+    )
+    return updateColor;
+  }catch(error){
+    return error;
+  }
+}
+
 module.exports = {
   getAllColors,
   getOneColor,
   createColor,
-  deleteColor
+  deleteColor, 
+  updateColor
 };
