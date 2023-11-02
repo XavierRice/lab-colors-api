@@ -1,6 +1,6 @@
 const express = require("express");
 const colors = express.Router();
-const { getAllColors, getOneColor, createColor } = require("../queries/color");
+const { getAllColors, getOneColor, createColor, deleteColor } = require("../queries/color");
 const {checkName, checkBoolean } = require("../validations/checkColors.js")
 
 // INDEX of GET ALL COLORS this is localhost:4005/colors"/"
@@ -29,6 +29,16 @@ colors.post("/", checkBoolean, checkName, async (req, res) => {
     const color = await createColor(req.body);
     res.json(color);
   });
-  
+
+//DELETE
+colors.delete("/:id", async (req, res) => {
+  const id = req.params.id;
+  const targetColor = await deleteColor(id);
+  if (targetColor.id) {
+    res.status(200).json(targetColor);
+  } else {
+    res.status(404).json({ error: "I just couldn't do!" });
+  }
+});
 
 module.exports = colors;
